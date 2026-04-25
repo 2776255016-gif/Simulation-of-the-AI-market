@@ -1,0 +1,522 @@
+globals [
+  tick-count
+  market-mode
+]
+
+breed [products product]
+
+products-own [
+  base-score
+  score-M1 score-M3 score-E1 score-E3 score-T3
+  product-type product-origin
+  user-base is-alive product-name
+]
+
+to setup
+  clear-all
+  set market-mode "global"
+  create-all-products
+  reset-ticks
+  set tick-count 0
+end
+
+to create-all-products
+
+  ;; ==================== 国外产品 ====================
+
+  create-products 1 [
+    set product-name "GPT-4o"
+    set product-type "Platform"
+    set product-origin "international"
+    set score-M1 10
+    set score-M3 10
+    set score-E1 10
+    set score-E3 10
+    set score-T3 9
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Claude3.5"
+    set product-type "Specialist"
+    set product-origin "international"
+    set score-M1 8
+    set score-M3 8
+    set score-E1 8
+    set score-E3 9
+    set score-T3 9
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Gemini1.5"
+    set product-type "Platform"
+    set product-origin "international"
+    set score-M1 9
+    set score-M3 9
+    set score-E1 9
+    set score-E3 10
+    set score-T3 10
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Llama3.1"
+    set product-type "Platform"
+    set product-origin "international"
+    set score-M1 6
+    set score-M3 9
+    set score-E1 10
+    set score-E3 10
+    set score-T3 8
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Mistral"
+    set product-type "Platform"
+    set product-origin "international"
+    set score-M1 6
+    set score-M3 7
+    set score-E1 8
+    set score-E3 8
+    set score-T3 8
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Grok-2"
+    set product-type "Interaction"
+    set product-origin "international"
+    set score-M1 8
+    set score-M3 5
+    set score-E1 9
+    set score-E3 8
+    set score-T3 8
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Perplexity"
+    set product-type "Specialist"
+    set product-origin "international"
+    set score-M1 9
+    set score-M3 8
+    set score-E1 7
+    set score-E3 8
+    set score-T3 7
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Midjourney"
+    set product-type "Creative"
+    set product-origin "international"
+    set score-M1 9
+    set score-M3 9
+    set score-E1 6
+    set score-E3 7
+    set score-T3 5
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "CharactrAI"
+    set product-type "Interaction"
+    set product-origin "international"
+    set score-M1 9
+    set score-M3 8
+    set score-E1 6
+    set score-E3 8
+    set score-T3 6
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "SD3"
+    set product-type "Creative"
+    set product-origin "international"
+    set score-M1 6
+    set score-M3 8
+    set score-E1 10
+    set score-E3 5
+    set score-T3 5
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  ;; ==================== 国内产品 ====================
+
+  create-products 1 [
+    set product-name "WenXin"
+    set product-type "Platform"
+    set product-origin "domestic"
+    set score-M1 10
+    set score-M3 10
+    set score-E1 9
+    set score-E3 10
+    set score-T3 8
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "TongYi"
+    set product-type "Platform"
+    set product-origin "domestic"
+    set score-M1 9
+    set score-M3 9
+    set score-E1 9
+    set score-E3 10
+    set score-T3 9
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Kimi"
+    set product-type "Specialist"
+    set product-origin "domestic"
+    set score-M1 9
+    set score-M3 9
+    set score-E1 7
+    set score-E3 9
+    set score-T3 10
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "DeepSeek"
+    set product-type "Platform"
+    set product-origin "domestic"
+    set score-M1 7
+    set score-M3 8
+    set score-E1 9
+    set score-E3 8
+    set score-T3 9
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Zhipu"
+    set product-type "Specialist"
+    set product-origin "domestic"
+    set score-M1 7
+    set score-M3 8
+    set score-E1 9
+    set score-E3 9
+    set score-T3 9
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Doubao"
+    set product-type "Interaction"
+    set product-origin "domestic"
+    set score-M1 10
+    set score-M3 6
+    set score-E1 10
+    set score-E3 10
+    set score-T3 7
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Xunfei"
+    set product-type "Specialist"
+    set product-origin "domestic"
+    set score-M1 8
+    set score-M3 8
+    set score-E1 6
+    set score-E3 9
+    set score-T3 8
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Hunyuan"
+    set product-type "Interaction"
+    set product-origin "domestic"
+    set score-M1 8
+    set score-M3 8
+    set score-E1 8
+    set score-E3 10
+    set score-T3 8
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "ShangLiang"
+    set product-type "Specialist"
+    set product-origin "domestic"
+    set score-M1 6
+    set score-M3 6
+    set score-E1 7
+    set score-E3 8
+    set score-T3 7
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+
+  create-products 1 [
+    set product-name "Baixiaoying"
+    set product-type "Specialist"
+    set product-origin "domestic"
+    set score-M1 6
+    set score-M3 6
+    set score-E1 6
+    set score-E3 8
+    set score-T3 8
+    set base-score calc-base-score
+    set user-base 0
+    set is-alive true
+    setxy random-xcor random-ycor
+  ]
+end
+
+;; ==================== 动态计算 base-score ====================
+
+to-report calc-base-score
+  let t product-type
+  let o product-origin
+  let s 0
+
+  if t = "Platform" and o = "international" [
+    set s 0.58 * score-M1 + 0.22 * score-M3
+  ]
+  if t = "Platform" and o = "domestic" [
+    set s 0.48 * score-M1 + 0.32 * score-M3
+  ]
+
+  if t = "Specialist" and o = "international" [
+    set s 0.55 * score-M1 + 0.20 * score-M3
+  ]
+  if t = "Specialist" and o = "domestic" [
+    set s 0.45 * score-M1 + 0.30 * score-M3
+  ]
+
+  if t = "Interaction" and o = "international" [
+    set s 0.51 * score-M1 + 0.17 * score-E3
+  ]
+  if t = "Interaction" and o = "domestic" [
+    set s 0.41 * score-M1 + 0.17 * score-E3
+  ]
+
+  if t = "Creative" [
+    set s 0.28 * score-E1 + 0.21 * score-T3
+  ]
+
+  report s
+end
+
+;; ==================== GO ====================
+
+to go
+  if not any? products with [is-alive] [stop]
+
+  ;; 每轮先根据当前分数重新计算 base-score
+  ask products with [is-alive] [
+    set base-score calc-base-score
+  ]
+
+  redistribute-users
+
+  ask products with [is-alive] [
+    update-product-status
+  ]
+
+  check-deaths
+
+  my-update-plots
+
+  tick
+  set tick-count tick-count + 1
+
+  if ticks >= 100 [stop]
+end
+
+;; ==================== 用户分配 ====================
+
+to redistribute-users
+  let alive-products products with [is-alive]
+  if count alive-products = 0 [stop]
+
+  ;; 第一步：重置所有产品的用户数
+  ask alive-products [set user-base 0]
+
+  ;; 第二步：2000 个用户，每个用户独立选择产品
+  let total-users 2000
+
+  repeat total-users [
+    ;; 随机选 2 个产品让用户比较
+    let option1 one-of alive-products
+    let option2 one-of alive-products
+
+    ;; 获取两个产品的 base-score，加上随机波动（模拟用户偏好的不确定性）
+    let att1 [base-score] of option1 + random-float 2.0
+    let att2 [base-score] of option2 + random-float 2.0
+
+    ;; 用户选吸引力更高的那个
+    ifelse att1 >= att2 [
+      ask option1 [set user-base user-base + 1]
+    ] [
+      ask option2 [set user-base user-base + 1]
+    ]
+  ]
+end
+
+;; ==================== 四种策略 ====================
+
+to update-product-status
+  if product-type = "Platform" [
+    if user-base > 100 [
+      set score-M1 score-M1 + 0.2
+    ]
+    if score-M3 < 8 [set score-M3 8]
+  ]
+
+  if product-type = "Specialist" [
+    if user-base > 80 [
+      set score-M3 score-M3 + 0.15
+    ]
+  ]
+
+  if product-type = "Interaction" [
+    if user-base > 150 [
+      set score-E3 score-E3 + 0.8
+    ]
+    set score-E3 score-E3 - 0.3
+    if score-E3 <= 0 [set is-alive false set user-base 0 set color gray]
+  ]
+
+  if product-type = "Creative" [
+    set score-E1 score-E1 + 0.1
+    if user-base < 40 [
+      set score-E1 score-E1 - 0.5
+    ]
+  ]
+
+  ;; 防止数值越界
+  if score-M1 > 10 [set score-M1 10]
+  if score-M1 < 0 [set score-M1 0]
+  if score-M3 > 10 [set score-M3 10]
+  if score-M3 < 0 [set score-M3 0]
+  if score-E1 > 10 [set score-E1 10]
+  if score-E1 < 0 [set score-E1 0]
+  if score-E3 > 10 [set score-E3 10]
+  if score-E3 < 0 [set score-E3 0]
+  if score-T3 > 10 [set score-T3 10]
+  if score-T3 < 0 [set score-T3 0]
+end
+
+;; ==================== 死亡检查 ====================
+
+to check-deaths
+  ask products with [is-alive] [
+    if score-E3 <= 0 [
+      set is-alive false
+      set user-base 0
+      set color gray
+    ]
+    if user-base < 30 [
+      set is-alive false
+      set user-base 0
+      set color gray
+    ]
+  ]
+end
+
+;; ==================== 更新图表 ====================
+
+to my-update-plots
+  set-current-plot "Key Products - User Base"
+
+  set-current-plot-pen "GPT-4o"
+  ifelse any? products with [product-name = "GPT-4o" and is-alive] [
+    plot [user-base] of one-of products with [product-name = "GPT-4o" and is-alive]
+  ] [plot 0]
+
+  set-current-plot-pen "WenXin"
+  ifelse any? products with [product-name = "WenXin" and is-alive] [
+    plot [user-base] of one-of products with [product-name = "WenXin" and is-alive]
+  ] [plot 0]
+
+  set-current-plot-pen "Kimi"
+  ifelse any? products with [product-name = "Kimi" and is-alive] [
+    plot [user-base] of one-of products with [product-name = "Kimi" and is-alive]
+  ] [plot 0]
+
+  set-current-plot-pen "Claude3.5"
+  ifelse any? products with [product-name = "Claude3.5" and is-alive] [
+    plot [user-base] of one-of products with [product-name = "Claude3.5" and is-alive]
+  ] [plot 0]
+
+  set-current-plot-pen "CharactrAI"
+  ifelse any? products with [product-name = "CharactrAI" and is-alive] [
+    plot [user-base] of one-of products with [product-name = "CharactrAI" and is-alive]
+  ] [plot 0]
+
+  set-current-plot "Domestic vs International"
+  set-current-plot-pen "Domestic-Total"
+  plot sum [user-base] of products with [product-origin = "domestic" and is-alive]
+
+  set-current-plot-pen "International-Total"
+  plot sum [user-base] of products with [product-origin = "international" and is-alive]
+
+  set-current-plot "Survival Count"
+  set-current-plot-pen "Alive"
+  plot count products with [is-alive]
+end
